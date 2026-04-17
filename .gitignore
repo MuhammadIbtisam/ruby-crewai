@@ -1,0 +1,6 @@
+/.bundle/
+/vendor/bundle
+*.gem
+Gemfile.lock
+/.idea/
+
