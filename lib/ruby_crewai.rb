@@ -3,6 +3,7 @@
 require_relative "crewai/version"
 require_relative "crewai/configuration"
 require_relative "crewai/errors"
+require_relative "crewai/http"
 
 module CrewAI
   class << self
