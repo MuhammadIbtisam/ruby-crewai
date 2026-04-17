@@ -2,6 +2,7 @@
 
 require_relative "crewai/version"
 require_relative "crewai/configuration"
+require_relative "crewai/errors"
 
 module CrewAI
   class << self
