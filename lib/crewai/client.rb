@@ -26,6 +26,20 @@ module CrewAI
       parse(@http.get("/#{kickoff_id}/status"))
     end
 
+    def resume(execution_id:, task_id:, human_feedback:, is_approve:,
+               task_webhook_url: nil, step_webhook_url: nil, crew_webhook_url: nil)
+      body = {
+        "execution_id" => execution_id,
+        "task_id" => task_id,
+        "human_feedback" => human_feedback,
+        "is_approve" => is_approve
+      }
+      body["taskWebhookUrl"] = task_webhook_url if task_webhook_url
+      body["stepWebhookUrl"] = step_webhook_url if step_webhook_url
+      body["crewWebhookUrl"] = crew_webhook_url if crew_webhook_url
+      parse(@http.post("/resume", body))
+    end
+
     private
 
     def parse(response)
