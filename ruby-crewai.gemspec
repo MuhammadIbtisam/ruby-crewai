@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.files = Dir["lib/**/*.rb", "LICENSE"]
+  spec.files = Dir["lib/**/*.rb"] + %w[LICENSE README.md CHANGELOG.md].select { |f| File.exist?(f) }
   spec.require_paths = ["lib"]
 
   spec.add_dependency "faraday", ">= 2.0", "< 3"
