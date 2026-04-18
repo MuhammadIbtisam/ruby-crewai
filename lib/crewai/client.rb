@@ -22,6 +22,10 @@ module CrewAI
       parse(@http.post("/kickoff", body))
     end
 
+    def status(kickoff_id)
+      parse(@http.get("/#{kickoff_id}/status"))
+    end
+
     private
 
     def parse(response)
