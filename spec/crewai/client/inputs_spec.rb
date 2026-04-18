@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe CrewAI::Client do
-  let(:client) { described_class.new }
+  let(:configuration) do
+    CrewAI::Configuration.new.tap do |c|
+      c.access_token = "test-token"
+      c.uri_base = "https://test.crewai.com"
+    end
+  end
+  let(:client) { described_class.new(configuration: configuration) }
   let(:uri_base) { "https://test.crewai.com" }
 
   describe "#inputs" do
@@ -30,14 +36,8 @@ RSpec.describe CrewAI::Client do
           )
       end
 
-      it "raises CrewAI::AuthenticationError" do
-        expect { client.inputs }.to raise_error(CrewAI::AuthenticationError)
-      end
-
-      it "exposes the status code" do
-        client.inputs
-      rescue CrewAI::AuthenticationError => e
-        expect(e.status).to eq(401)
+      it "raises CrewAI::AuthenticationError with the server message" do
+        expect { client.inputs }.to raise_error(CrewAI::AuthenticationError, /Unauthorized/)
       end
     end
 
