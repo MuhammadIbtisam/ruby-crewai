@@ -55,7 +55,7 @@ RSpec.describe CrewAI::Client do
       end
 
       it "sends is_approve: false in the request body" do
-        expect(client.resume(**resume_params.merge(is_approve: false))).to eq({ "status" => "resumed" })
+        expect(client.resume(**resume_params, is_approve: false)).to eq({ "status" => "resumed" })
       end
     end
 
@@ -123,7 +123,9 @@ RSpec.describe CrewAI::Client do
       end
 
       it "raises CrewAI::InvalidRequestError with the server message" do
-        expect { client.resume(**resume_params) }.to raise_error(CrewAI::InvalidRequestError, /execution_id is required/)
+        expect do
+          client.resume(**resume_params)
+        end.to raise_error(CrewAI::InvalidRequestError, /execution_id is required/)
       end
     end
 
