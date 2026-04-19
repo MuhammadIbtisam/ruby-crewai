@@ -14,7 +14,7 @@ RSpec.describe CrewAI::Client do
   describe "#status" do
     context "when successful" do
       before do
-        stub_request(:get, "#{uri_base}/#{kickoff_id}/status")
+        stub_request(:get, "#{uri_base}/status/#{kickoff_id}")
           .to_return(
             status: 200,
             body: { "status" => "running" }.to_json,
@@ -28,13 +28,13 @@ RSpec.describe CrewAI::Client do
 
       it "GETs the correct path" do
         client.status(kickoff_id)
-        expect(a_request(:get, "#{uri_base}/#{kickoff_id}/status")).to have_been_made.once
+        expect(a_request(:get, "#{uri_base}/status/#{kickoff_id}")).to have_been_made.once
       end
     end
 
     context "when the kickoff_id is not found (404)" do
       before do
-        stub_request(:get, "#{uri_base}/#{kickoff_id}/status")
+        stub_request(:get, "#{uri_base}/status/#{kickoff_id}")
           .to_return(
             status: 404,
             body: { "message" => "Kickoff not found" }.to_json,
@@ -53,7 +53,7 @@ RSpec.describe CrewAI::Client do
 
     context "when unauthorized" do
       before do
-        stub_request(:get, "#{uri_base}/#{kickoff_id}/status")
+        stub_request(:get, "#{uri_base}/status/#{kickoff_id}")
           .to_return(
             status: 401,
             body: { "message" => "Unauthorized" }.to_json,
@@ -68,7 +68,7 @@ RSpec.describe CrewAI::Client do
 
     context "when server error" do
       before do
-        stub_request(:get, "#{uri_base}/#{kickoff_id}/status")
+        stub_request(:get, "#{uri_base}/status/#{kickoff_id}")
           .to_return(
             status: 500,
             body: { "message" => "Internal Server Error" }.to_json,

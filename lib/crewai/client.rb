@@ -23,7 +23,7 @@ module CrewAI
     end
 
     def status(kickoff_id)
-      parse(@http.get("/#{kickoff_id}/status"))
+      parse(@http.get("/status/#{kickoff_id}"))
     end
 
     def resume(execution_id:, task_id:, human_feedback:, is_approve:,
