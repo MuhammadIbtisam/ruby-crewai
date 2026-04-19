@@ -9,6 +9,10 @@ module CrewAI
       @http = HTTP.new(configuration: @configuration)
     end
 
+    def healthcheck
+      parse(@http.get("/healthcheck"))
+    end
+
     def inputs
       parse(@http.get("/inputs"))
     end
