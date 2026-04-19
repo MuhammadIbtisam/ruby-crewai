@@ -1,0 +1,65 @@
+plugins:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "vendor/**/*"
+    - "*.gemspec"
+
+# Codebase consistently uses double-quoted strings (matches ruby-openai style)
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+# Line length — 120 is comfortable for gem code
+Layout/LineLength:
+  Max: 120
+
+# Documentation handled separately in C3 (YARD)
+Style/Documentation:
+  Enabled: false
+
+# resume has 7 keyword args by API design — cannot reduce without breaking the interface
+Metrics/ParameterLists:
+  Max: 7
+
+# Allow longer methods in specs (stubs + setup)
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - "spec/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+# Frozen string literal already enforced in every file
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
+# ruby-crewai.rb is an intentional hyphenated require shim — not a naming error
+Naming/FileName:
+  Exclude:
+    - "lib/ruby-crewai.rb"
+
+# Faraday builder blocks are naturally complex — this is unavoidable
+Metrics/AbcSize:
+  Exclude:
+    - "lib/crewai/http.rb"
+
+# rubocop-rspec expects crew_ai/ but our module namespace is crewai/ (no underscore)
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+# RSpec
+RSpec/MultipleExpectations:
+  Max: 3
+
+RSpec/ExampleLength:
+  Max: 15

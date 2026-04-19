@@ -189,7 +189,9 @@ RSpec.describe CrewAI::Client do
       end
 
       it "raises CrewAI::AuthenticationError with the server message" do
-        expect { client.kickoff(inputs: { "topic" => "AI" }) }.to raise_error(CrewAI::AuthenticationError, /Unauthorized/)
+        expect do
+          client.kickoff(inputs: { "topic" => "AI" })
+        end.to raise_error(CrewAI::AuthenticationError, /Unauthorized/)
       end
     end
 
