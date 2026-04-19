@@ -29,8 +29,8 @@ module CrewAI
     def resume(execution_id:, task_id:, human_feedback:, is_approve:,
                task_webhook_url: nil, step_webhook_url: nil, crew_webhook_url: nil)
       body = {
-        "execution_id" => execution_id,
-        "task_id" => task_id,
+        "executionId" => execution_id,
+        "taskId" => task_id,
         "human_feedback" => human_feedback,
         "is_approve" => is_approve
       }

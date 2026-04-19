@@ -28,13 +28,13 @@ RSpec.describe CrewAI::Client do
         expect(client.resume(**resume_params)).to eq({ "status" => "resumed" })
       end
 
-      it "POSTs the required fields with snake_case keys" do
+      it "POSTs with camelCase executionId and taskId" do
         client.resume(**resume_params)
         expect(
           a_request(:post, "#{uri_base}/resume").with(
             body: hash_including(
-              "execution_id" => "e-1",
-              "task_id" => "t-1",
+              "executionId" => "e-1",
+              "taskId" => "t-1",
               "human_feedback" => "looks good",
               "is_approve" => true
             )
