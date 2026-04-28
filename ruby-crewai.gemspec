@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["78165374+MuhammadIbtisam@users.noreply.github.com"]
 
   spec.summary = "Ruby client for the CrewAI AMP HTTP API"
-  spec.description = "A minimal, production-grade Ruby client for CrewAI AMP REST endpoints: inputs, kickoff, status, and resume."
+  spec.description = "A minimal, production-grade Ruby client for CrewAI AMP REST endpoints: healthcheck, inputs, kickoff, status, and resume."
   spec.homepage = "https://github.com/MuhammadIbtisam/ruby-crewai"
   spec.license = "MIT"
 

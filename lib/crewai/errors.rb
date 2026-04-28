@@ -3,11 +3,13 @@
 module CrewAI
   class Error < StandardError; end
 
-  class AuthenticationError < Error; end
+  class ClientError < Error; end
 
-  class InvalidRequestError < Error; end
+  class AuthenticationError < ClientError; end
 
-  class NotFoundError < Error; end
+  class InvalidRequestError < ClientError; end
+
+  class NotFoundError < ClientError; end
 
   class ServerError < Error; end
 
